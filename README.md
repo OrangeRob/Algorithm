@@ -1,7 +1,9 @@
 # Algorithm in C++
 
 ## Sort
-O(n^2) 
+| Time complexity | Name |
+|:--:|:--|
+|O(n^2)| Selection Sort <br/> Insert Sort|
 
-Selection Sort
-Insert Sort
+
+
