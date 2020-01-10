@@ -1,3 +1,6 @@
+#ifndef _SORT_TESTHELPER_H_
+#define _SORT_TESTHELPER_H_
+
 #include <iostream>
 #include <ctime>
 #include <cassert>
@@ -14,6 +17,22 @@ namespace SortTestHelper {
         srand(time(NULL));
         for(int i = 0; i < n; i++) 
             arr[i] = rand() % (rangeR - rangeL + 1) + rangeL;
+
+        return arr;
+    }
+
+    int* generateNearlyOrderedArray(int n, int swapTimes) {
+        int *arr = new int[n];
+
+        for(int i = 0; i < n; i++) 
+            arr[i] = i;
+
+        srand(time(NULL));
+        for(int i = 0; i < swapTimes; i++) {
+            int posx = rand() % n;
+            int posy = rand() % n;
+            swap(arr[posx], arr[posy]);
+        }
 
         return arr;
     }
@@ -46,4 +65,12 @@ namespace SortTestHelper {
         cout << sortName << " : " << double(endTime - startTime) / CLOCKS_PER_SEC << " s" << endl;
     }
 
+    int* copyIntArray(int a[], int length) {
+        int *arr = new int[length];
+        copy(a, a + length, arr);
+        return arr;
+    }
+
 }
+
+#endif // _SORT_TESTHELPER_H_
