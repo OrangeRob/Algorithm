@@ -24,7 +24,7 @@ namespace SortTestHelper {
     int* generateNearlyOrderedArray(int n, int swapTimes) {
         int *arr = new int[n];
 
-        for(int i = 0; i < n; i++) 
+        for(int i = 0; i < n; i++)
             arr[i] = i;
 
         srand(time(NULL));
@@ -33,6 +33,14 @@ namespace SortTestHelper {
             int posy = rand() % n;
             swap(arr[posx], arr[posy]);
         }
+
+        return arr;
+    }
+
+    int* generateOrderedArray(int n) {
+        int *arr = new int[n];
+        for(int i = 0; i < n; i++)
+            arr[i] = i;
 
         return arr;
     }

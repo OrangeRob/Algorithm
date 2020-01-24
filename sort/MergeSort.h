@@ -1,7 +1,7 @@
 #ifndef _MERGE_SORT_H_
 #define _MERGE_SORT_H_
 
-#include "InsertionSort.h"
+#include "sort/InsertionSort.h"
 
 using namespace std;
 
