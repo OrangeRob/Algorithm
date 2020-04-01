@@ -1,0 +1,4 @@
+"D:\Rob Program\JetBrains\CLion 2019.3.2\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" D:\codebase\Algorithm\Cpp
+-- Configuring done
+-- Generating done
+-- Build files have been written to: D:/codebase/Algorithm/Cpp/cmake-build-debug

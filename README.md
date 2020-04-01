@@ -1,4 +1,4 @@
-# Algorithm in C++
+# Algorithm
 
 ## Sort
 | Time complexity   | Name          |           |

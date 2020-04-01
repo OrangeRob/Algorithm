@@ -15,6 +15,8 @@
 // Utils
 #include "sort/SortTestHelper.h"
 
+#include "data/MaxHeap.h"
+
 using namespace std;
 
 void testRandomArraySort(int n) {
@@ -113,12 +115,20 @@ int main()
 {
     int n = 1000000;
 
+//    cout << "\n--------------------\n" << endl;
+//    testRandomArraySort(n);
+//    cout << "\n--------------------\n" << endl;
+//    testNearlyOrderedArraySort(n);
+//    cout << "\n--------------------\n" << endl;
+//    testLimitedRangeArraySort(n);
+
     cout << "\n--------------------\n" << endl;
-    testRandomArraySort(n);
-    cout << "\n--------------------\n" << endl;
-    testNearlyOrderedArraySort(n);
-    cout << "\n--------------------\n" << endl;
-    testLimitedRangeArraySort(n);
+    MaxHeap<int> maxHeap = MaxHeap<int>(100);
+    cout << maxHeap.size() << endl;
+    srand(time(NULL));
+    for( int i = 0; i < 40; i++)
+        maxHeap.insert(rand()%100);
+    maxHeap.testPrint();
 
 
     return 0;
