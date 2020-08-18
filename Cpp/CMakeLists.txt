@@ -1,14 +1,18 @@
-cmake_minimum_required(VERSION 3.15)
-project(Cpp)
+﻿# CMakeList.txt : CMake project for AlgoritmDS, include source and define
+# project specific logic here.
+#
+cmake_minimum_required (VERSION 3.8)
 
-set(CMAKE_CXX_STANDARD 14)
+project ("AlgoritmDS")
 
-include_directories(.)
+set(ALGORITHM_INC ${CMAKE_CURRENT_LIST_DIR}/algorithm)
+set(UTILS_INC ${CMAKE_CURRENT_LIST_DIR}/utils)
 
-add_executable(Cpp
-        sort/InsertionSort.h
-        main.cpp
-        sort/MergeSort.h
-        sort/SelectionSort.h
-        sort/SortTestHelper.h
-        Student.h sort/QuickSort.h data/MaxHeap.h)
+include_directories(${ALGORITHM_INC} ${UTILS_INC})
+
+set(CMAKE_CXX_STANDARD 17)
+
+# Add source to this project's executable.
+add_executable (AlgoritmDS "main.cpp" "Student.h" "test.h")
+
+# TODO: Add tests and install targets if needed.

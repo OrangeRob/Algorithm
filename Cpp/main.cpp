@@ -1,135 +1,95 @@
+﻿// main.cpp : Defines the entry point for the application.
+//
+
 #include <iostream>
-#include <algorithm>
-#include <string>
 
-#include "Student.h"
+#include "test.h"
 
-// O(N^2)
-#include "sort/SelectionSort.h"
-#include "sort/InsertionSort.h"
+#include "TestHelper.h"
+#include "SelectionSort.h"
+#include "InsertionSort.h"
+#include "MergeSort.h"
 
-// O(NlogN)
-#include "sort/MergeSort.h"
-#include "sort/QuickSort.h"
+#define ARRAY_SIZE(x) ( sizeof(x)/sizeof(x[0]) )
 
-// Utils
-#include "sort/SortTestHelper.h"
-
-#include "data/MaxHeap.h"
-
-using namespace std;
-
-void testRandomArraySort(int n) {
-    /* [rangeL, rangeR] */
-    int rangeL = 0;
-    int rangeR = n;
-
-    cout << "Test for random array, size = " << n << ", random range [" << rangeL << ", " << rangeR << "]" << endl;
-    int *arr = SortTestHelper::generateRandomArray(n, rangeL, rangeR);
-    int *arr2 = SortTestHelper::copyIntArray(arr, n);
-    int *arr3 = SortTestHelper::copyIntArray(arr, n);
-    int *arr4 = SortTestHelper::copyIntArray(arr, n);
-    int *arr5 = SortTestHelper::copyIntArray(arr, n);
-    int *arr6 = SortTestHelper::copyIntArray(arr, n);
-    int *arr7 = SortTestHelper::copyIntArray(arr, n);
-
-    //SortTestHelper::testSort("Selection Sort", selectionSort, arr, n);
-    //SortTestHelper::testSort("Insertion Sort", insertionSort, arr2, n);
-    SortTestHelper::testSort("Merge Sort", mergeSort, arr3, n);
-    SortTestHelper::testSort("Merge Sort Bottom UP", mergeSortBottomUp, arr4, n);
-    SortTestHelper::testSort("Quick Sort", quickSort, arr5, n);
-    SortTestHelper::testSort("Quick Sort 2 Ways", quickSort2Ways, arr6, n);
-    SortTestHelper::testSort("Quick Sort 3 Ways", quickSort3Ways, arr7, n);
-
-    delete[] arr;
-    delete[] arr2;
-    delete[] arr3;
-    delete[] arr4;
-    delete[] arr5;
-    delete[] arr6;
-    delete[] arr7;
-}
-
-void testNearlyOrderedArraySort(int n) {
-    int swapTimes = 100;
-    assert( swapTimes >= 0 );
-
-    cout << "Test for nearly ordered array, size = " << n <<", swap time = "<< swapTimes << endl;
-    int *arr = SortTestHelper::generateNearlyOrderedArray(n, swapTimes);
-    int *arr2 = SortTestHelper::copyIntArray(arr, n);
-    int *arr3 = SortTestHelper::copyIntArray(arr, n);
-    int *arr4 = SortTestHelper::copyIntArray(arr, n);
-    int *arr5 = SortTestHelper::copyIntArray(arr, n);
-    int *arr6 = SortTestHelper::copyIntArray(arr, n);
-    int *arr7 = SortTestHelper::copyIntArray(arr, n);
-
-    //SortTestHelper::testSort("Selection Sort", selectionSort, arr, n);
-    SortTestHelper::testSort("Insertion Sort", insertionSort, arr2, n);
-    SortTestHelper::testSort("Merge Sort", mergeSort, arr3, n);
-    SortTestHelper::testSort("Merge Sort Bottom UP", mergeSortBottomUp, arr4, n);
-    SortTestHelper::testSort("Quick Sort", quickSort, arr5, n);
-    SortTestHelper::testSort("Quick Sort 2 Ways", quickSort2Ways, arr6, n);
-    SortTestHelper::testSort("Quick Sort 3 Ways", quickSort3Ways, arr7, n);
-
-    delete[] arr;
-    delete[] arr2;
-    delete[] arr3;
-    delete[] arr4;
-    delete[] arr5;
-    delete[] arr6;
-    delete[] arr7;
-}
-
-void testLimitedRangeArraySort(int n) {
-    /* [rangeL, rangeR] */
-    int rangeL = 0;
-    int rangeR = 10;
-
-    cout << "Test for random array, size = " << n << ", random range [" << rangeL << ", " << rangeR << "]" << endl;
-    int *arr = SortTestHelper::generateRandomArray(n, rangeL, rangeR);
-    int *arr2 = SortTestHelper::copyIntArray(arr, n);
-    int *arr3 = SortTestHelper::copyIntArray(arr, n);
-    int *arr4 = SortTestHelper::copyIntArray(arr, n);
-    int *arr5 = SortTestHelper::copyIntArray(arr, n);
-    int *arr6 = SortTestHelper::copyIntArray(arr, n);
-    int *arr7 = SortTestHelper::copyIntArray(arr, n);
-
-    //SortTestHelper::testSort("Selection Sort", selectionSort, arr, n);
-    SortTestHelper::testSort("Insertion Sort", insertionSort, arr2, n);
-    SortTestHelper::testSort("Merge Sort", mergeSort, arr3, n);
-    SortTestHelper::testSort("Merge Sort Bottom UP", mergeSortBottomUp, arr4, n);
-    SortTestHelper::testSort("Quick Sort", quickSort, arr5, n);
-    SortTestHelper::testSort("Quick Sort 2 Ways", quickSort2Ways, arr6, n);
-    SortTestHelper::testSort("Quick Sort 3 Ways", quickSort3Ways, arr7, n);
-
-    delete[] arr;
-    delete[] arr2;
-    delete[] arr3;
-    delete[] arr4;
-    delete[] arr5;
-    delete[] arr6;
-    delete[] arr7;
-}
- 
 int main()
 {
-    int n = 1000000;
+	
+	return 0;
+}
 
-//    cout << "\n--------------------\n" << endl;
-//    testRandomArraySort(n);
-//    cout << "\n--------------------\n" << endl;
-//    testNearlyOrderedArraySort(n);
-//    cout << "\n--------------------\n" << endl;
-//    testLimitedRangeArraySort(n);
+/**
+ * Item : Merge & MergeBottomUp Sort
+ * Case : Random Array & Nearly Ordered Array
+ */
+void testMergeSort(void)
+{
+	int n = 100000;
+	std::cout << "Test for Random Array, size = " << n << ", random range [0, " << n << "]" << std::endl;
+	int* arr1 = TestHelper::generateRandomArray(n, 0, n);
+	int* arr2 = TestHelper::copyIntArray(arr1, n);
+	int* arr3 = TestHelper::copyIntArray(arr1, n);
+	int* arr4 = TestHelper::copyIntArray(arr1, n);
 
-    cout << "\n--------------------\n" << endl;
-    MaxHeap<int> maxHeap = MaxHeap<int>(100);
-    cout << maxHeap.size() << endl;
-    srand(time(NULL));
-    for( int i = 0; i < 40; i++)
-        maxHeap.insert(rand()%100);
-    maxHeap.testPrint();
+	TestHelper::testSort("Insertion Optimization", insertionSort_2, arr1, n);
+	TestHelper::testSort("Merge", mergeSort, arr2, n);
+	TestHelper::testSort("MergeBottomUP", mergeSortBottomUp, arr3, n);
+	TestHelper::testSort("MergeBottomUP Optimization", mergeSortBottomUp_2, arr4, n);
 
+	delete[] arr1;
+	delete[] arr2;
+	delete[] arr3;
+	delete[] arr4;
 
-    return 0;
+	int swapTimes = 10;
+	std::cout << "Test for Random Nearly Ordered Array, size = " << n << ", swap time = " << swapTimes << std::endl;
+	arr1 = TestHelper::generateNearlyOrderedArray(n, swapTimes);
+	arr2 = TestHelper::copyIntArray(arr1, n);
+	arr3 = TestHelper::copyIntArray(arr1, n);
+	arr4 = TestHelper::copyIntArray(arr1, n);
+
+	TestHelper::testSort("Insertion Optimization", insertionSort_2, arr1, n);
+	TestHelper::testSort("Merge", mergeSort, arr2, n);
+	TestHelper::testSort("MergeBottomUP", mergeSortBottomUp, arr3, n);
+	TestHelper::testSort("MergeBottomUP Optimization", mergeSortBottomUp_2, arr4, n);
+
+	delete[] arr1;
+	delete[] arr2;
+	delete[] arr3;
+	delete[] arr4;
+}
+
+/**
+ * Item : Selection & Insertion Sort
+ * Case : Random Array & Nearly Ordered Array
+ */
+void testBasicSort(void)
+{
+	int n = 100000;
+
+	std::cout << "[Random Array Test]" << std::endl;
+	int* arr = TestHelper::generateRandomArray(n, 0, n);
+	int* arr2 = TestHelper::copyIntArray(arr, n);
+	int* arr3 = TestHelper::copyIntArray(arr, n);
+
+	TestHelper::testSort("Selection", selectionSort, arr, n);
+	TestHelper::testSort("Insertion", insertionSort, arr2, n);
+	TestHelper::testSort("Insertion Optimization", insertionSort_2, arr3, n);
+
+	delete[] arr;
+	delete[] arr2;
+	delete[] arr3;
+
+	std::cout << "[Nearly Ordered Array Test]" << std::endl;
+	arr = TestHelper::generateNearlyOrderedArray(n, 100);
+	arr2 = TestHelper::copyIntArray(arr, n);
+	arr3 = TestHelper::copyIntArray(arr, n);
+
+	TestHelper::testSort("Selection", selectionSort, arr, n);
+	TestHelper::testSort("Insertion", insertionSort, arr2, n);
+	TestHelper::testSort("Insertion Optimization", insertionSort_2, arr3, n);
+
+	delete[] arr;
+	delete[] arr2;
+	delete[] arr3;
 }

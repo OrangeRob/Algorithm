@@ -1,18 +1,20 @@
-#include <iostream>
-#include <string>
+#ifndef __STUDENT_H__
+#define __STUDENT_H__
 
-using namespace std;
+#include <iostream>
 
 struct Student {
-    string name;
-    int score;
+	std::string name;
+	int score;
 
-    bool operator<(const Student &otherStudent) {
-        return score != otherStudent.score ? score < otherStudent.score: name < otherStudent.name;
-    }
+	bool operator<(const Student& otherStudent) {
+		return score != otherStudent.score ? score < otherStudent.score : name < otherStudent.name;
+	}
 
-    friend ostream& operator<<(ostream &os, const Student &student) {
-        os << "Student: " << student.name << " " << student.score << endl;
-        return os;
-    }
+	friend std::ostream& operator<<(std::ostream& os, const Student& student) {
+		os << "Student " << student.name << " : " << student.score << std::endl;
+		return os;
+	}
 };
+
+#endif //__STUDENT_H__
