@@ -9,12 +9,61 @@
 #include "SelectionSort.h"
 #include "InsertionSort.h"
 #include "MergeSort.h"
+#include "QuickSort.h"
 
 #define ARRAY_SIZE(x) ( sizeof(x)/sizeof(x[0]) )
 
 int main()
 {
-	
+	int n = 1000000;
+	std::cout << "Test for Random Array, size = " << n << ", random range [0, " << n << "]" << std::endl;
+	int* arr1 = TestHelper::generateRandomArray(n, 0, n);
+	int* arr2 = TestHelper::copyIntArray(arr1, n);
+	int* arr3 = TestHelper::copyIntArray(arr1, n);
+	int* arr4 = TestHelper::copyIntArray(arr1, n);
+
+	TestHelper::testSort("Merge Sort", mergeSort, arr1, n);
+	TestHelper::testSort("Quick Sort", quickSort, arr2, n);
+	TestHelper::testSort("Quick Sort 2Ways", quickSort2Ways, arr3, n);
+	TestHelper::testSort("Quick Sort 3Ways", quickSort3Ways, arr4, n);
+
+	delete[] arr1;
+	delete[] arr2;
+	delete[] arr3;
+	delete[] arr4;
+
+	int swapTimes = 100;
+	std::cout << "Test for Random Nearly Ordered Array, size = " << n << ", swap time = " << swapTimes << std::endl;
+	arr1 = TestHelper::generateNearlyOrderedArray(n, swapTimes);
+	arr2 = TestHelper::copyIntArray(arr1, n);
+	arr3 = TestHelper::copyIntArray(arr1, n);
+	arr4 = TestHelper::copyIntArray(arr1, n);
+
+	TestHelper::testSort("Merge Sort", mergeSort, arr1, n);
+	TestHelper::testSort("Quick Sort", quickSort, arr2, n);
+	TestHelper::testSort("Quick Sort 2Way", quickSort2Ways, arr3, n);
+	TestHelper::testSort("Quick Sort 3Ways", quickSort3Ways, arr4, n);
+
+	delete[] arr1;
+	delete[] arr2;
+	delete[] arr3;
+	delete[] arr4;
+
+	std::cout << "Test for Random Array, size = " << n << ", random range [0, 10]" << std::endl;
+	arr1 = TestHelper::generateRandomArray(n, 0, 10);
+	arr2 = TestHelper::copyIntArray(arr1, n);
+	arr3 = TestHelper::copyIntArray(arr1, n);
+	arr4 = TestHelper::copyIntArray(arr1, n);
+
+	TestHelper::testSort("Merge Sort", mergeSort, arr1, n);
+	//TestHelper::testSort("Quick Sort", quickSort, arr2, n);
+	TestHelper::testSort("Quick Sort 2Way", quickSort2Ways, arr3, n);
+	TestHelper::testSort("Quick Sort 3Ways", quickSort3Ways, arr4, n);
+
+	delete[] arr1;
+	delete[] arr2;
+	delete[] arr3;
+	delete[] arr4;
 	return 0;
 }
 
