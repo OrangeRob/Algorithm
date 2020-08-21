@@ -8,7 +8,7 @@
 
 namespace TestHelper {
 	/* range [rangeL, rangeR] */
-	int* generateRandomArray(int n, int rangeL, int rangeR) {
+	static int* generateRandomArray(int n, int rangeL, int rangeR) {
 		assert(rangeL <= rangeR);
 
 		int* arr = new int[n];
@@ -19,7 +19,7 @@ namespace TestHelper {
 		return arr;
 	}
 
-	int* generateNearlyOrderedArray(int n, int swapTimes) {
+	static int* generateNearlyOrderedArray(int n, int swapTimes) {
 		int* arr = new int[n];
 		for (int i = 0; i < n; i++)
 			arr[i] = i;
@@ -34,21 +34,21 @@ namespace TestHelper {
 		return arr;
 	}
 
-	int* copyIntArray(int* src, int n) {
+	static int* copyIntArray(int* src, int n) {
 		int* dest = new int[n];
 		std::copy(src, src + n, dest);
 		return dest;
 	}
 
 	template <typename T>
-	void printArray(T* arr, int n) {
+	static void printArray(T* arr, int n) {
 		for (int i = 0; i < n; i++)
 			std::cout << arr[i] << " ";
 		std::cout << std::endl;
 	}
 
 	template <typename T>
-	bool isSorted(T* arr, int n) {
+	static bool isSorted(T* arr, int n) {
 		for (int i = 0; i < n - 1; i++)
 			if (arr[i] > arr[i + 1])
 				return false;
@@ -56,7 +56,7 @@ namespace TestHelper {
 	}
 
 	template <typename T>
-	void testSort(std::string sortName, void(*sort)(T*, int), T* arr, int n) {	
+	static void testSort(std::string sortName, void(*sort)(T*, int), T* arr, int n) {
 		//clock_t startTime = std::clock();
 		//clock_t endTime = std::clock();
 		//std::cout << sortName << " : " << (double)(endTime - startTime) / CLOCKS_PER_SEC << " s" << std::endl;

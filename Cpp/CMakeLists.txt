@@ -13,6 +13,6 @@ include_directories(${ALGORITHM_INC} ${UTILS_INC})
 set(CMAKE_CXX_STANDARD 17)
 
 # Add source to this project's executable.
-add_executable (AlgoritmDS "main.cpp" "Student.h" "test.h")
+add_executable (AlgoritmDS "main.cpp" "Student.h" "test.h" "test.cpp")
 
 # TODO: Add tests and install targets if needed.
