@@ -1,6 +1,9 @@
 #ifndef __TEST_H__
 #define __TEST_H__
 
+/** testHeapInstance : Heap Object test */
+void testHeapInstance(void);
+
 /** testBasicSort : Selection & Insertion Sort */
 void testBasicSort(void);
 
