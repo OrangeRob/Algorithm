@@ -3,6 +3,8 @@
 
 #include "InsertionSort.h"
 
+#include <ctime>
+
 /*
  * range : arr[l...r]
  * divided arr[l...r] to < v, == v, >v 3 parts

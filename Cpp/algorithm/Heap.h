@@ -352,7 +352,7 @@ public:
 
 		std::swap(indexes[0], indexes[count - 1]);
 		reverse[indexes[0]] = 0;
-		reverse[indexed[count - 1]] = -1;
+		reverse[indexes[count - 1]] = -1;
 
 		count--;
 		shiftDown(0);
