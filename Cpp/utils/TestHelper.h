@@ -34,6 +34,13 @@ namespace TestHelper {
 		return arr;
 	}
 
+    static int* generateOrderedArray(int n) {
+        int* arr = new int[n];
+        for (int i = 0; i < n; i++)
+            arr[i] = i;
+        return arr;
+    }
+
 	static int* copyIntArray(int* src, int n) {
 		int* dest = new int[n];
 		std::copy(src, src + n, dest);
@@ -67,6 +74,20 @@ namespace TestHelper {
 		
 		assert(isSorted(arr, n));
 		std::cout << sortName << " : " << std::chrono::duration<double>(endTime - startTime).count() << " s" << std::endl;
+	}
+
+    template<typename T>
+	static void testSearch(std::string searchName, int(*search)(T*, int, int), T* arr, int n) {
+	    auto startTime = std::chrono::high_resolution_clock::now();
+	    for(int i = 0; i < 2*n; i++) {
+	        int ret = search(arr, n, i);
+            if(i < n)
+                assert( ret == i);
+            else
+                assert( ret == -1);
+        }
+	    auto endTime = std::chrono::high_resolution_clock::now();
+	    std::cout << searchName << " : " << std::chrono::duration<double>(endTime - startTime).count() << " s" << std::endl;
 	}
 }
 

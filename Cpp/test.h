@@ -13,4 +13,7 @@ void testMergeSort(void);
 /** testQuickSort : QuickSort & QuickSort 2Ways & QuickSort 3Ways */
 void testQuickSort(void);
 
+/** testBinarySearch : BinarySearch & BinarySearchRecursive */
+void testBinarySearch(void);
+
 #endif // __TEST_H__

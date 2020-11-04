@@ -6,6 +6,8 @@
 #include "QuickSort.h"
 #include "Heap.h"
 
+#include "BinarySearch.h"
+
 #include "test.h"
 #include "TestHelper.h"
 
@@ -172,4 +174,20 @@ void testBasicSort(void)
 	delete[] arr;
 	delete[] arr2;
 	delete[] arr3;
+}
+
+/**
+ * Item : Binary Search & Binary Search Recursion
+ * Case : Ordered Array
+ */
+void testBinarySearch(void)
+{
+    int n = 1000000;
+    int* arr = TestHelper::generateOrderedArray(n);
+
+    std::cout << "[Binary Search Test]" << std::endl;
+    TestHelper::testSearch("Binary Search", binarySearch, arr, n);
+    TestHelper::testSearch("Binary Search (Recursion)", binarySearchR, arr, n);
+
+    delete arr;
 }

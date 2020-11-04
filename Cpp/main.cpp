@@ -8,20 +8,18 @@
 #include "Heap.h"
 
 #include "TestHelper.h"
+#include "test.h"
 
 #define ARRAY_SIZE(x) (sizeof(x) / sizeof(x[0]))
 
 using std::cout;
 using std::endl;
 
-void foo(int* arr, int n) {
-	cout << ARRAY_SIZE(arr) << endl;
-	cout << sizeof(arr) << endl;
-	cout << sizeof(int*) << endl;
-}
-
 int main()
-{	
+{
+    testBinarySearch();
+
+#if 0
 	IndexMaxHeap<int> indexHeap = IndexMaxHeap<int>(6);
 	srand((unsigned int)time(NULL));
 	for (int i = 0; i < 6; i++) {
@@ -35,6 +33,7 @@ int main()
 		cout << "extract : " << indexHeap.extract() << endl;
 		cout << indexHeap << endl;
 	}
+#endif
 
 	
 	/*int n = 1000000;
