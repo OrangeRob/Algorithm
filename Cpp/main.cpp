@@ -17,7 +17,7 @@ using std::endl;
 
 int main()
 {
-    testBinarySearch();
+
 
 #if 0
 	IndexMaxHeap<int> indexHeap = IndexMaxHeap<int>(6);

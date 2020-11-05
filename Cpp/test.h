@@ -16,4 +16,7 @@ void testQuickSort(void);
 /** testBinarySearch : BinarySearch & BinarySearchRecursive */
 void testBinarySearch(void);
 
+/** testBST (Binary Search Tree) */
+void testBST(void);
+
 #endif // __TEST_H__
