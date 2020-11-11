@@ -2,7 +2,7 @@
 #define __BINARYSEARCHTREE_H__
 
 template<typename Key, typename Value>
-class BST {
+class BinarySearchTree {
 private:
     struct Node {
         Key key;
@@ -22,12 +22,12 @@ private:
     int count;
 
 public:
-    BST() {
+    BinarySearchTree() {
         root = nullptr;
         count = 0;
     }
 
-    ~BST() {
+    ~BinarySearchTree() {
         // TODO:
     }
 
@@ -40,24 +40,56 @@ public:
     }
 
     void insert(Key key, Value value) {
-        root = insert(root, key, value);
+        root = _insert(root, key, value);
+    }
+
+    bool contain(Key key) {
+        return _contain(root, key);
+    }
+
+    Value* search(Key key) {
+        return _search(root, key);
     }
 
 private:
-    Node* insert(Node* node, Key key, Value value) {
+    Node* _insert(Node* node, Key key, Value value) {
         if(node == nullptr) {
             count++;
             return new Node(key, value);
         }
 
-        if(key == node->key)
-            node->value = value;
+        if(key > node->key)
+            node->right = _insert(node->right, key, value);
         else if(key < node->key)
-            node->left = insert(node->left, key, value);
+            node->left = _insert(node->left, key, value);
         else
-            node->right = insert(node->right, key, value);
+            node->value = value;
 
         return node;
+    }
+
+    bool _contain(Node* node, Key key) {
+        if(node == nullptr)
+            return false;
+
+        if(key > node->key)
+            return _contain(node->right, key);
+        else if(key < node->key)
+            return _contain(node->left, key);
+        else
+            return true;
+    }
+
+    Value* _search(Node* node, Key key) {
+        if(node == nullptr)
+            return nullptr;
+
+        if(key > node->key)
+            return _search(node->right, key);
+        else if(key < node->key)
+            return _search(node->left, key);
+        else
+            return &(node->value);
     }
 };
 

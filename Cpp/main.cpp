@@ -1,25 +1,15 @@
 ﻿#include <iostream>
-#include <iomanip>
 
-#include "SelectionSort.h"
-#include "InsertionSort.h"
-#include "MergeSort.h"
-#include "QuickSort.h"
-#include "Heap.h"
-
-#include "TestHelper.h"
 #include "test.h"
-
-#define ARRAY_SIZE(x) (sizeof(x) / sizeof(x[0]))
 
 using std::cout;
 using std::endl;
 
 int main()
 {
+    testBST();
 
-
-#if 0
+#if 0 // todo: ... heap sort
 	IndexMaxHeap<int> indexHeap = IndexMaxHeap<int>(6);
 	srand((unsigned int)time(NULL));
 	for (int i = 0; i < 6; i++) {

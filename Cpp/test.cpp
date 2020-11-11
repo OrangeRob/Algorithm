@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 
 #include "SelectionSort.h"
 #include "InsertionSort.h"
@@ -7,9 +8,12 @@
 #include "Heap.h"
 
 #include "BinarySearch.h"
+#include "BinarySearchTree.h"
+#include "SequenceSearchTree.h"
 
 #include "test.h"
 #include "TestHelper.h"
+#include "FileUtils.h"
 
 using std::cout;
 using std::endl;
@@ -193,10 +197,65 @@ void testBinarySearch(void)
 }
 
 /**
- * Item : Binary Search & Binary Search Recursion
- * Case : 
+ * Item : Binary Search Tree & Sequence Search Tree
+ * Case : bible.txt
  */
 void testBST(void)
 {
+    std::string filePath = "../asset/bible.txt";
+    std::vector<std::string> words;
+    if( FileUtils::readFile(filePath, words) ) {
 
+        cout << "There are totally " << words.size() << " words in " << filePath << endl;
+        cout << endl;
+
+        time_t startTime = clock();
+
+        /** Binary Search Tree */
+        BinarySearchTree<std::string, int> bst = BinarySearchTree<std::string, int>();
+        for (std::vector<std::string>::iterator iter = words.begin(); iter != words.end(); iter++) {
+            int *res = bst.search(*iter);
+            if (res == NULL)
+                bst.insert(*iter, 1);
+            else
+                (*res)++;
+        }
+
+
+        if(bst.contain("god"))
+            cout << "'god' : " << *bst.search("god") << endl;
+        else
+            cout << "No word 'god' in " << filePath << endl;
+
+        time_t endTime = clock();
+
+        cout << "[BinarySearchTree] time: " << double(endTime - startTime) / CLOCKS_PER_SEC << " s." << endl;
+        cout << endl;
+
+
+        /** Sequence Search Tree */
+        startTime = clock();
+
+        // 统计圣经中所有词的词频
+        // 注: 这个词频统计法相对简陋, 没有考虑很多文本处理中的特殊问题
+        // 在这里只做性能测试用
+        SequenceSearchTree<std::string, int> sst = SequenceSearchTree<std::string, int>();
+        for (std::vector<std::string>::iterator iter = words.begin(); iter != words.end(); iter++) {
+            int *res = sst.search(*iter);
+            if (res == NULL)
+                sst.insert(*iter, 1);
+            else
+                (*res)++;
+        }
+
+        // 输出圣经中god一词出现的频率
+        if(sst.contain("god"))
+            cout << "'god' : " << *sst.search("god") << endl;
+        else
+            cout << "No word 'god' in " << filePath << endl;
+
+        endTime = clock();
+
+        cout << "[SequenceSearchTree] time: " << double(endTime - startTime) / CLOCKS_PER_SEC << " s." << endl;
+    }
 }
