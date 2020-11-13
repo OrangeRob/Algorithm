@@ -1,6 +1,8 @@
 #ifndef __BINARYSEARCHTREE_H__
 #define __BINARYSEARCHTREE_H__
 
+#include <queue>
+
 template<typename Key, typename Value>
 class BinarySearchTree {
 private:
@@ -18,6 +20,7 @@ private:
         }
     };
 
+private:
     Node* root;
     int count;
 
@@ -29,6 +32,7 @@ public:
 
     ~BinarySearchTree() {
         // TODO:
+        destroy(root);
     }
 
     int size() {
@@ -40,19 +44,46 @@ public:
     }
 
     void insert(Key key, Value value) {
-        root = _insert(root, key, value);
+        root = __insert(root, key, value);
     }
 
     bool contain(Key key) {
-        return _contain(root, key);
+        return __contain(root, key);
     }
 
     Value* search(Key key) {
-        return _search(root, key);
+        return __search(root, key);
+    }
+
+    void preOrder() {
+        __preOrder(root);
+    }
+
+    void inOrder() {
+        __inOrder(root);
+    }
+
+    void postOrder() {
+        __postOrder(root);
+    }
+
+    void levelOrder() {
+        std::queue<Node *> q;
+        q.push(root);
+        while(!q.empty()) {
+            Node* node = q.front();
+            q.pop();
+
+            std::cout << node->key << std::endl;
+            if(node->left != nullptr)
+                q.push(node->left);
+            if(node->right != nullptr)
+                q.push(node->right);
+        }
     }
 
 private:
-    Node* _insert(Node* node, Key key, Value value) {
+    Node* __insert(Node* node, Key key, Value value) {
         if(node == nullptr) {
             count++;
             return new Node(key, value);
@@ -68,7 +99,7 @@ private:
         return node;
     }
 
-    bool _contain(Node* node, Key key) {
+    bool __contain(Node* node, Key key) {
         if(node == nullptr)
             return false;
 
@@ -80,7 +111,7 @@ private:
             return true;
     }
 
-    Value* _search(Node* node, Key key) {
+    Value* __search(Node* node, Key key) {
         if(node == nullptr)
             return nullptr;
 
@@ -90,6 +121,39 @@ private:
             return _search(node->left, key);
         else
             return &(node->value);
+    }
+
+    void __preOrder(Node* node) {
+        if(node != nullptr) {
+            std::cout << node->key << std::endl;
+            __preOrder(node->left);
+            __preOrder(node->right);
+        }
+    }
+
+    void __inOrder(Node* node) {
+        if(node != nullptr) {
+            __inOrder(node->left);
+            std::cout << node->key << std::endl;
+            __inOrder(node->right);
+        }
+    }
+
+    void __postOrder(Node* node) {
+        if(node != nullptr) {
+            __postOrder(node->left);
+            __postOrder(node->right);
+            std::cout << node->key << std::endl;
+        }
+    }
+
+    void __destroy(Node* node) {
+        if(node != nullptr) {
+            __destroy(node->left);
+            __destroy(node->right);
+            delete node;
+            count--;
+        }
     }
 };
 

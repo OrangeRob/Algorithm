@@ -26,7 +26,7 @@ int binarySearch(T arr[], int n, T target) {
 
 
 template<typename T>
-int __binarySearchR(T arr[], int l, int r, int target) {
+int __binarySearchR(T *arr, int l, int r, int target) {
     if(l > r)
         return -1;
 

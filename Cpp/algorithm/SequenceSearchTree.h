@@ -82,6 +82,15 @@ public:
         }
         return nullptr;
     }
+
+    void order() {
+        Node* node = head;
+        while(node != nullptr) {
+            std::cout << node->key << " ";
+            node = node->next;
+        }
+        std::cout << std::endl;
+    }
 };
 
 #endif //__SEQUENCESEARCHTREE_H__
