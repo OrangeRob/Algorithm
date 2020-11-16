@@ -39,7 +39,7 @@ public:
 
     ~BinarySearchTree() {
         // TODO:
-        destroy(root);
+        __destroy(root);
     }
 
     int size() {
@@ -125,9 +125,9 @@ private:
         }
 
         if(key > node->key)
-            node->right = _insert(node->right, key, value);
+            node->right = __insert(node->right, key, value);
         else if(key < node->key)
-            node->left = _insert(node->left, key, value);
+            node->left = __insert(node->left, key, value);
         else
             node->value = value;
 
@@ -139,9 +139,9 @@ private:
             return false;
 
         if(key > node->key)
-            return _contain(node->right, key);
+            return __contain(node->right, key);
         else if(key < node->key)
-            return _contain(node->left, key);
+            return __contain(node->left, key);
         else
             return true;
     }
@@ -151,9 +151,9 @@ private:
             return nullptr;
 
         if(key > node->key)
-            return _search(node->right, key);
+            return __search(node->right, key);
         else if(key < node->key)
-            return _search(node->left, key);
+            return __search(node->left, key);
         else
             return &(node->value);
     }
