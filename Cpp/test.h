@@ -19,4 +19,7 @@ void testBinarySearch(void);
 /** testBST (Binary Search Tree) */
 void testBST(void);
 
+/** testBST2 (Binary Search Tree) */
+void testBST2(void);
+
 #endif // __TEST_H__

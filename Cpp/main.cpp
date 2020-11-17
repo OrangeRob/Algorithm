@@ -7,7 +7,7 @@ using std::endl;
 
 int main()
 {
-    testBST();
+    testBST2();
 
 #if 0 // todo: ... heap sort
 	IndexMaxHeap<int> indexHeap = IndexMaxHeap<int>(6);

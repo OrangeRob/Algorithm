@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
 #include "SelectionSort.h"
 #include "InsertionSort.h"
@@ -235,10 +236,6 @@ void testBST(void)
 
         /** Sequence Search Tree */
         startTime = clock();
-
-        // 统计圣经中所有词的词频
-        // 注: 这个词频统计法相对简陋, 没有考虑很多文本处理中的特殊问题
-        // 在这里只做性能测试用
         SequenceSearchTree<std::string, int> sst = SequenceSearchTree<std::string, int>();
         for (std::vector<std::string>::iterator iter = words.begin(); iter != words.end(); iter++) {
             int *res = sst.search(*iter);
@@ -248,7 +245,6 @@ void testBST(void)
                 (*res)++;
         }
 
-        // 输出圣经中god一词出现的频率
         if(sst.contain("god"))
             cout << "'god' : " << *sst.search("god") << endl;
         else
@@ -257,5 +253,78 @@ void testBST(void)
         endTime = clock();
 
         cout << "[SequenceSearchTree] time: " << double(endTime - startTime) / CLOCKS_PER_SEC << " s." << endl;
+    }
+}
+
+/**
+ * Item : Binary Search Tree & Sequence Search Tree
+ * Case : communist.txt
+ */
+void testBST2(void)
+{
+    std::string filePath = "../asset/communist.txt";
+    std::vector<std::string> words;
+    if( FileUtils::readFile(filePath, words) ) {
+
+        cout << "There are totally " << words.size() << " words in " << filePath << endl;
+        cout << endl;
+
+        /** Binary Search Tree */
+        time_t startTime = clock();
+        BinarySearchTree<std::string, int> bst = BinarySearchTree<std::string, int>();
+        for (std::vector<std::string>::iterator iter = words.begin(); iter != words.end(); iter++) {
+            int *res = bst.search(*iter);
+            if (res == NULL)
+                bst.insert(*iter, 1);
+            else
+                (*res)++;
+        }
+
+        if(bst.contain("unite"))
+            cout << "'unite' : " << *bst.search("unite") << endl;
+        else
+            cout << "No word 'unite' in " << filePath << endl;
+        time_t endTime = clock();
+        cout << "[BinarySearchTree] time: " << double(endTime - startTime) / CLOCKS_PER_SEC << " s." << endl;
+
+        /** Sequence Search Tree */
+        startTime = clock();
+        SequenceSearchTree<std::string, int> sst = SequenceSearchTree<std::string, int>();
+        for (std::vector<std::string>::iterator iter = words.begin(); iter != words.end(); iter++) {
+            int *res = sst.search(*iter);
+            if (res == NULL)
+                sst.insert(*iter, 1);
+            else
+                (*res)++;
+        }
+
+        if(sst.contain("unite"))
+            cout << "'unite' : " << *sst.search("unite") << endl;
+        else
+            cout << "No word 'unite' in " << filePath << endl;
+        endTime = clock();
+        cout << "[SequenceSearchTree] time: " << double(endTime - startTime) / CLOCKS_PER_SEC << " s." << endl;
+
+
+        /** Binary Search Tree (insert Ordered) */
+        std::sort(words.begin(), words.end());
+
+        startTime = clock();
+        BinarySearchTree<std::string, int> bst2 = BinarySearchTree<std::string, int>();
+        for (std::vector<std::string>::iterator iter = words.begin(); iter != words.end(); iter++) {
+            int *res = bst2.search(*iter);
+            if (res == NULL)
+                bst2.insert(*iter, 1);
+            else
+                (*res)++;
+        }
+
+        if(bst.contain("unite"))
+            cout << "'unite' : " << *bst2.search("unite") << endl;
+        else
+            cout << "No word 'unite' in " << filePath << endl;
+        endTime = clock();
+        cout << "[BinarySearchTree (Ordered)] time: " << double(endTime - startTime) / CLOCKS_PER_SEC << " s." << endl;
+        cout << endl;
     }
 }
