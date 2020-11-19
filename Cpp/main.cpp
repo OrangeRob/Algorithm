@@ -5,9 +5,20 @@
 using std::cout;
 using std::endl;
 
+void getCplusplusVerison() {
+    std::cout << "[C++ Version] : ";
+    if (__cplusplus == 201703L) std::cout << "C++17" << std::endl;
+    else if (__cplusplus == 201402L) std::cout << "C++14" << std::endl;
+    else if (__cplusplus == 201103L) std::cout << "C++11" << std::endl;
+    else if (__cplusplus == 199711L) std::cout << "C++98" << std::endl;
+    else std::cout << "pre-standard C++" << std::endl;
+}
+
 int main()
 {
-    testBST2();
+    getCplusplusVerison();
+
+    testUnionFind();
 
 #if 0 // todo: ... heap sort
 	IndexMaxHeap<int> indexHeap = IndexMaxHeap<int>(6);

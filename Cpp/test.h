@@ -22,4 +22,7 @@ void testBST(void);
 /** testBST2 (Binary Search Tree) */
 void testBST2(void);
 
+/** testUnionFind : UF1, UF2, UF3, UF4, UF5 */
+void testUnionFind(void);
+
 #endif // __TEST_H__

@@ -15,6 +15,7 @@
 #include "test.h"
 #include "TestHelper.h"
 #include "FileUtils.h"
+#include "UnionFindTestHelper.h"
 
 using std::cout;
 using std::endl;
@@ -327,4 +328,15 @@ void testBST2(void)
         cout << "[BinarySearchTree (Ordered)] time: " << double(endTime - startTime) / CLOCKS_PER_SEC << " s." << endl;
         cout << endl;
     }
+}
+
+/**
+ * Item : UnionFind 1, UnionFind 2
+ * Case :
+ */
+void testUnionFind(void)
+{
+    int n = 100000;
+    UnionFindTestHelper::testUF1(n);
+    UnionFindTestHelper::testUF2(n);
 }
