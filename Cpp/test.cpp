@@ -331,12 +331,20 @@ void testBST2(void)
 }
 
 /**
- * Item : UnionFind 1, UnionFind 2
+ * Item : UnionFind 1, UnionFind 2, UnionFind3, UnionFind4
  * Case :
  */
 void testUnionFind(void)
 {
-    int n = 100000;
+    int n = 10000;
     UnionFindTestHelper::testUF1(n);
     UnionFindTestHelper::testUF2(n);
+    UnionFindTestHelper::testUF3(n);
+    UnionFindTestHelper::testUF4(n);
+
+    cout << endl;
+
+    n = 1000000;
+    UnionFindTestHelper::testUF3(n);
+    UnionFindTestHelper::testUF4(n);
 }
