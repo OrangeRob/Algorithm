@@ -1,9 +1,14 @@
 ﻿#include <iostream>
+#include <vector>
+#include <ctime>
+#include "graph/SparseGraph.h"
+#include "graph/DenseGraph.h"
 
 #include "test.h"
 
 using std::cout;
 using std::endl;
+using std::vector;
 
 void getCplusplusVerison() {
     std::cout << "[C++ Version] : ";
@@ -18,7 +23,40 @@ int main()
 {
     getCplusplusVerison();
 
-    testUnionFind();
+    int N = 5;
+    int M = 7;
+    srand(time(NULL));
+
+    SparseGraph g(N, false);
+    for(int i = 0; i < M; i++) {
+        int a = rand() % N;
+        int b = rand() % N;
+        g.addEdge(a, b);
+    }
+
+    for(int v = 0; v < N; v++) {
+        cout << v << " : ";
+        SparseGraph::adjIterator adj(g, v);
+        for(int w = adj.begin(); !adj.end(); w = adj.next())
+            cout << w << " ";
+        cout << endl;
+    }
+    cout << " ------------------- " << endl;
+
+    DenseGraph g2(N, false);
+    for(int i = 0; i < M; i++) {
+        int a = rand() % N;
+        int b = rand() % N;
+        g2.addEdge(a, b);
+    }
+
+    for(int v = 0; v < N; v++) {
+        cout << v << " : ";
+        DenseGraph::adjIterator adj(g2, v);
+        for(int w = adj.begin(); !adj.end(); w = adj.next())
+            cout << w << " ";
+        cout << endl;
+    }
 
 #if 0 // todo: ... heap sort
 	IndexMaxHeap<int> indexHeap = IndexMaxHeap<int>(6);
